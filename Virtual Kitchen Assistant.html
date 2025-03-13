@@ -1,0 +1,140 @@
+
+<!-- saved from url=(0094)file:///C:/Users/ADMIN-6/Documents/cook%20book%20the%20virtual%20kitchen%20assistant/home.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    <title>Virtual Kitchen Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #acacf5;
+        }
+        header {
+            background-color: #ccbda3;
+            color: rgb(252, 138, 144);
+            padding: 10px 0;
+            text-align: center;
+        }
+        .search-bar {
+            margin: 10px;
+            text-align: center;
+        }
+        .recipes-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .recipe-card {
+            background-color: #f090cb;
+            border: 1px solid #218cca;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .recipe-card:hover {
+            background-color: #79c8e7;
+        }
+        .recipe-details {
+            padding: 20px;
+            background-color: rgb(190, 223, 137);
+            border: 1px solid #21fafa;
+            border-radius: 8px;
+            margin: 10px;
+        }
+        .recipe-details h3 {
+            margin-top: 0;
+        }
+    
+    </style>
+
+
+ 
+
+
+
+    <header>
+        <h1>Virtual Kitchen Assistant</h1>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Search for recipes..." onkeyup="searchRecipes()">
+    </div>
+
+    <div id="recipes-container" class="recipes-list">
+        <div class="recipe-card" onclick="showRecipeDetails(&#39;Spaghetti Bolognese&#39;)">
+            <h4>Spaghetti Bolognese</h4>
+            <img src="./Virtual Kitchen Assistant_files/delicious-spaghetti-bolognese-white-plate-top-view-isolated-transparent-background_220739-92670.jpg" alt="cake" width="200" height="200">
+        </div>
+        <div class="recipe-card" onclick="showRecipeDetails(&#39;Chicken Curry&#39;)">
+            <h4>Chicken Curry</h4>
+            <img src="./Virtual Kitchen Assistant_files/Instant-pot-chicken-curry-recipe.jpg" alt="cake" width="200" height="200">
+        </div>
+        <div class="recipe-card" onclick="showRecipeDetails(&#39;Vegetable Stir Fry&#39;)">
+            <h4>Vegetable Stir Fry</h4>
+            <img src="./Virtual Kitchen Assistant_files/vegetable-stir-fry-22-3.jpg" alt="cake" width="200" height="200">
+        </div>
+        <div class="recipe-card" onclick="showRecipeDetails(&#39;Chocolate Cake&#39;)">
+            <h4>Chocolate Cake</h4>
+            <img src="./Virtual Kitchen Assistant_files/chocolate-rose-designer-cake-half-kg.webp" alt="cake" width="200" height="200">
+        </div>
+    </div>
+
+    <div id="recipe-details" class="recipe-details" style="display: none;">
+        <h3>Recipe Details</h3>
+        <div id="recipe-name"></div>
+        <div id="ingredients"></div>
+        <div id="instructions"></div>
+    </div>
+
+    <script>
+        // Data for recipes
+        const recipes = {
+            "Spaghetti Bolognese": {
+                ingredients: "Spaghetti, ground beef, tomato sauce, onion, garlic, olive oil, salt, pepper.",
+                instructions: "Cook spaghetti. Sauté onion and garlic in olive oil. Add beef, cook, add tomato sauce and simmer. Combine with spaghetti."
+            },
+            "Chicken Curry": {
+                ingredients: "Chicken breast, curry powder, coconut milk, garlic, onion, ginger, salt, oil.",
+                instructions: "Cook chicken pieces. Sauté onion, garlic, ginger, add curry powder. Add coconut milk and simmer with chicken."
+            },
+            "Vegetable Stir Fry": {
+                ingredients: "Broccoli, carrots, bell peppers, soy sauce, garlic, olive oil, sesame seeds.",
+                instructions: "Stir-fry vegetables in olive oil with garlic. Add soy sauce and cook for 5 more minutes. Serve with sesame seeds."
+            },
+            "Chocolate Cake": {
+                ingredients: "Flour, cocoa powder, sugar, eggs, butter, baking powder, milk.",
+                instructions: "Mix dry ingredients. Add wet ingredients and bake at 350°F for 30 minutes. Frost with chocolate icing."
+            }
+        };
+
+        // Function to display recipe details
+        function showRecipeDetails(recipeName) {
+            const details = recipes[recipeName];
+            document.getElementById("recipe-name").innerHTML = `<strong>${recipeName}</strong>`;
+            document.getElementById("ingredients").innerHTML = `<strong>Ingredients:</strong><p>${details.ingredients}</p>`;
+            document.getElementById("instructions").innerHTML = `<strong>Instructions:</strong><p>${details.instructions}</p>`;
+            document.getElementById("recipe-details").style.display = 'block';
+        }
+
+        // Function to search recipes
+        function searchRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const recipeCards = document.querySelectorAll('.recipe-card');
+
+            recipeCards.forEach(card => {
+                const title = card.querySelector('h4').textContent.toLowerCase();
+                if (title.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
+
+ </body></html>
